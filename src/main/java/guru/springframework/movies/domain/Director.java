@@ -2,6 +2,7 @@ package guru.springframework.movies.domain;
 
 import jakarta.persistence.*;
 
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -13,8 +14,8 @@ public class Director {
     private String name;
     private int age;
 
-    @OneToMany(mappedBy = "directors")
-    private Set<Movie> movies;
+    @OneToMany(mappedBy = "director")
+    private Set<Movie> movies = new HashSet<>();
 
     public Set<Movie> getMovies() {
         return movies;

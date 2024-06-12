@@ -1,8 +1,6 @@
 package guru.springframework.movies.domain;
 
 import jakarta.persistence.*;
-import org.hibernate.annotations.ManyToAny;
-
 import java.util.Set;
 
 @Entity
@@ -14,16 +12,15 @@ public class Movie {
     private String title;
     private int boxOffice;
 
-    @ManyToOne
-    @JoinTable(name = "director_movie", joinColumns = @JoinColumn(name = "movie_id"), inverseJoinColumns = @JoinColumn(name = "director_id"))
-    private Set<Director> directors;
+    @ManyToOne(cascade = CascadeType.PERSIST)
+    private Director director;
 
-    public Set<Director> getDirectors() {
-        return directors;
+    public Director getDirector() {
+        return director;
     }
 
-    public void setDirectors(Set<Director> directors) {
-        this.directors = directors;
+    public void setDirector(Director director) {
+        this.director = director;
     }
 
     public Long getId() {
